@@ -1,0 +1,6 @@
+{
+  "name": "session-hud",
+  "version": "0.1.0",
+  "description": "A /hud pane with time, git changes, task progress and files touched this session",
+  "types": "./types/index.d.ts"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "budget-guard",
+  "version": "0.1.0",
+  "description": "Daily spend budget: warns as you approach it and asks before going over (/budget)",
+  "types": "./types/index.d.ts"
+}

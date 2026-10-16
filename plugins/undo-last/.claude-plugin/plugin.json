@@ -1,0 +1,6 @@
+{
+  "name": "undo-last",
+  "version": "0.1.0",
+  "description": "Saves files before Claude edits them so /undo-last can put back the last turn's changes",
+  "types": "./types/index.d.ts"
+}

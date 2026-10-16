@@ -1,0 +1,6 @@
+{
+  "name": "model-advisor",
+  "version": "0.1.0",
+  "description": "Picks Sonnet or Opus for each prompt by how hard it is (/model-advisor)",
+  "types": "./types/index.d.ts"
+}

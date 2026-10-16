@@ -1,0 +1,93 @@
+{
+  "name": "claudemods",
+  "owner": {
+    "name": "rathialok901"
+  },
+  "plugins": [
+    {
+      "name": "agent-dashboard",
+      "source": "./plugins/agent-dashboard",
+      "description": "Live pane of subagents: type, task, elapsed time, tool calls and status"
+    },
+    {
+      "name": "auto-compact",
+      "source": "./plugins/auto-compact",
+      "description": "Compacts the conversation once context passes a threshold (/compact-at)"
+    },
+    {
+      "name": "budget-guard",
+      "source": "./plugins/budget-guard",
+      "description": "Daily spend budget: warns as you approach it and asks before going over (/budget)"
+    },
+    {
+      "name": "done-sound",
+      "source": "./plugins/done-sound",
+      "description": "Chime when a long turn finishes, a different sound when it fails"
+    },
+    {
+      "name": "explain-risky",
+      "source": "./plugins/explain-risky",
+      "description": "Explains risky commands in one plain-English line while their approval prompt is open"
+    },
+    {
+      "name": "guardrails",
+      "source": "./plugins/guardrails",
+      "description": "Blocks destructive commands and access to secret files, for Claude and its agents (/guardrails)"
+    },
+    {
+      "name": "long-term-memory",
+      "source": "./plugins/long-term-memory",
+      "description": "Remembers session summaries, decisions and preferences across sessions, in a file you can edit (/brain)"
+    },
+    {
+      "name": "mascot",
+      "source": "./plugins/mascot",
+      "description": "A little character above the prompt that reacts to what Claude is doing (/mascot)"
+    },
+    {
+      "name": "model-advisor",
+      "source": "./plugins/model-advisor",
+      "description": "Picks Sonnet or Opus for each prompt by how hard it is (/model-advisor)"
+    },
+    {
+      "name": "mods-center",
+      "source": "./plugins/mods-center",
+      "description": "A colourful control panel for all your mods: live status and one-key toggles (/mods)"
+    },
+    {
+      "name": "next-step",
+      "source": "./plugins/next-step",
+      "description": "Suggests the next prompt after each turn: run tests, fix the error, commit (Tab to take)"
+    },
+    {
+      "name": "prompt-enhancer",
+      "source": "./plugins/prompt-enhancer",
+      "description": "Adds the last error and recent files behind short, vague prompts like 'fix it' (/enhancer)"
+    },
+    {
+      "name": "session-hud",
+      "source": "./plugins/session-hud",
+      "description": "A /hud pane with time, git changes, task progress and files touched this session"
+    },
+    {
+      "name": "style-rules",
+      "source": "./plugins/style-rules",
+      "description": "Your personal preferences added to Claude's system prompt in every session (/style)"
+    },
+    {
+      "name": "tidy-view",
+      "source": "./plugins/tidy-view",
+      "description": "One-line tool calls (/compact-tools) and a distraction-free zen mode (/zen)"
+    },
+    {
+      "name": "undo-last",
+      "source": "./plugins/undo-last",
+      "description": "Saves files before Claude edits them so /undo-last can put back the last turn's changes"
+    },
+    {
+      "name": "usage-meter",
+      "source": "./plugins/usage-meter",
+      "description": "Warns with a toast as rate limits pass 80% and 95% (figures show in the mascot band)"
+    }
+  ]
+}

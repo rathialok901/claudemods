@@ -1,0 +1,6 @@
+{
+  "name": "style-rules",
+  "version": "0.1.0",
+  "description": "Your personal preferences added to Claude's system prompt in every session (/style)",
+  "types": "./types/index.d.ts"
+}

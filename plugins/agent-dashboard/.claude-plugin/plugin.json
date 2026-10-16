@@ -1,0 +1,6 @@
+{
+  "name": "agent-dashboard",
+  "version": "0.1.0",
+  "description": "Live pane of subagents: type, task, elapsed time, tool calls and status",
+  "types": "./types/index.d.ts"
+}

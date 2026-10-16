@@ -1,0 +1,5 @@
+{
+  "name": "usage-meter",
+  "version": "0.1.0",
+  "description": "Warns with a toast as rate limits pass 80% and 95% (figures show in the mascot band)"
+}

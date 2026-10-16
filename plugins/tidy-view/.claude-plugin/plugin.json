@@ -1,0 +1,6 @@
+{
+  "name": "tidy-view",
+  "version": "0.1.0",
+  "description": "One-line tool calls (/compact-tools) and a distraction-free zen mode (/zen)",
+  "types": "./types/index.d.ts"
+}

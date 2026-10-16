@@ -1,0 +1,6 @@
+{
+  "name": "explain-risky",
+  "version": "0.1.0",
+  "description": "Explains risky commands in one plain-English line while their approval prompt is open",
+  "types": "./types/index.d.ts"
+}

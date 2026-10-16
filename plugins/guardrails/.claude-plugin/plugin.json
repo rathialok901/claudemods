@@ -1,0 +1,6 @@
+{
+  "name": "guardrails",
+  "version": "0.1.0",
+  "description": "Blocks destructive commands and access to secret files, for Claude and its agents (/guardrails)",
+  "types": "./types/index.d.ts"
+}

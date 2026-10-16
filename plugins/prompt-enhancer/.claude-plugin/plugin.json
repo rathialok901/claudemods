@@ -1,0 +1,6 @@
+{
+  "name": "prompt-enhancer",
+  "version": "0.1.0",
+  "description": "Adds the last error and recent files behind short, vague prompts like 'fix it' (/enhancer)",
+  "types": "./types/index.d.ts"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "done-sound",
+  "version": "0.1.0",
+  "description": "Chime when a long turn finishes, a different sound when it fails"
+}

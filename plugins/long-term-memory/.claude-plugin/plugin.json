@@ -1,0 +1,6 @@
+{
+  "name": "long-term-memory",
+  "version": "0.1.0",
+  "description": "Remembers session summaries, decisions and preferences across sessions, in a file you can edit (/brain)",
+  "types": "./types/index.d.ts"
+}

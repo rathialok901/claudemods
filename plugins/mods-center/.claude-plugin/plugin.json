@@ -1,0 +1,20 @@
+{
+  "name": "mods-center",
+  "version": "0.1.0",
+  "description": "A colourful control panel for all your mods: live status and one-key toggles (/mods)",
+  "types": "./types/index.d.ts",
+  "dependencies": [
+    "tidy-view",
+    "mascot",
+    "model-advisor",
+    "prompt-enhancer",
+    "next-step",
+    "auto-compact",
+    "guardrails",
+    "budget-guard",
+    "explain-risky",
+    "undo-last",
+    "agent-dashboard",
+    "long-term-memory"
+  ]
+}

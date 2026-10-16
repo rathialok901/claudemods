@@ -1,0 +1,6 @@
+{
+  "name": "auto-compact",
+  "version": "0.1.0",
+  "description": "Compacts the conversation once context passes a threshold (/compact-at)",
+  "types": "./types/index.d.ts"
+}

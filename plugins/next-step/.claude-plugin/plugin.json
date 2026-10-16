@@ -1,0 +1,6 @@
+{
+  "name": "next-step",
+  "version": "0.1.0",
+  "description": "Suggests the next prompt after each turn: run tests, fix the error, commit (Tab to take)",
+  "types": "./types/index.d.ts"
+}
