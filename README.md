@@ -1,6 +1,6 @@
 # 🧩 claudemods
 
-**17 mods that change how Claude Code looks and behaves.** You get a colourful control panel, a mascot, live agent status, automatic Sonnet/Opus switching, long-term memory, safety guardrails, a daily budget, undo, and more.
+**18 mods that change how Claude Code looks and behaves.** You get a colourful control panel, a mascot, live agent status, automatic Sonnet/Opus switching, long-term memory, safety guardrails, a daily budget, undo, and more.
 
 The mods are built with Claude Code's plugin **function hooks**. Each one is a small TypeScript module in its own folder under [`plugins/`](plugins/).
 
@@ -53,6 +53,7 @@ The control center reads its status from the other mods, so for the full experie
 /plugin install model-advisor --marketplace rathialok901/claudemods
 /plugin install mods-center --marketplace rathialok901/claudemods
 /plugin install next-step --marketplace rathialok901/claudemods
+/plugin install phone-alert --marketplace rathialok901/claudemods
 /plugin install prompt-enhancer --marketplace rathialok901/claudemods
 /plugin install session-hud --marketplace rathialok901/claudemods
 /plugin install style-rules --marketplace rathialok901/claudemods
@@ -116,6 +117,29 @@ Tracks every subagent: its type, task, elapsed time, tool calls and status. It a
 
 #### `usage-meter`: Usage alerts
 Shows a toast when your 5-hour or 7-day limit passes 80% and again at 95%, so it never surprises you.
+
+#### `phone-alert`: Phone alerts (ntfy and iMessage)
+A message on your phone **when you've stepped away** and:
+- ✅ a task of 30 seconds or longer finishes: "Done in myapp (4m 5s)"
+- ❌ a turn fails
+- ⚠️ Claude is waiting for your approval. It checks every 30 seconds, so you're told even if you leave after the prompt appears.
+- 📉 you reach 95% of your 5-hour or 7-day limit
+
+You count as away after 2 minutes without keyboard or mouse input on the Mac. While you're at the Mac, the done sound covers you.
+
+**Set it up with one or both of these:**
+- **ntfy** (iPhone and Android, free): run `/phone-alert ntfy` to get a private topic name. Install the **ntfy** app, tap **+**, and enter that topic. ntfy alerts carry only the folder name and status. Anyone who knows the topic name could read them, so keep it private.
+- **iMessage** (Mac and iPhone): run `/phone-alert imessage +15551234567`, or use your Apple ID email. Messages must be signed in on the Mac. The first time, allow Claude Code to control Messages. iMessage alerts also include the command waiting for approval.
+
+**Commands:**
+- `/phone-alert test`: send a test alert
+- `/phone-alert on | off` (`i` in the panel)
+- `/phone-alert away 5`: count as away after 5 minutes. `0` alerts always.
+- `/phone-alert quiet 23-7`: no alerts overnight. `quiet off` removes quiet hours.
+- `/phone-alert ntfy off`, `/phone-alert imessage off`
+- `/phone-alert`: status
+
+Alerts sent show in the control center's ⚡ Activity tab. To use your own ntfy server, run `/phone-alert ntfy <topic> https://ntfy.example.com`.
 
 #### `done-sound`: Done sound
 Plays a chime when a turn of 20 seconds or longer finishes, and a low tone if it failed. You can walk away and come back when it's done.

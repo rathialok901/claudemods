@@ -60,6 +60,11 @@
       "description": "Suggests the next prompt after each turn: run tests, fix the error, commit (Tab to take)"
     },
     {
+      "name": "phone-alert",
+      "source": "./plugins/phone-alert",
+      "description": "Alerts your phone through ntfy or iMessage when a long task finishes or Claude needs you while you're away (/phone-alert)"
+    },
+    {
       "name": "prompt-enhancer",
       "source": "./plugins/prompt-enhancer",
       "description": "Adds the last error and recent files behind short, vague prompts like 'fix it' (/enhancer)"

@@ -1,0 +1,6 @@
+{
+  "name": "phone-alert",
+  "version": "0.1.0",
+  "description": "Alerts your phone through ntfy or iMessage when a long task finishes or Claude needs you while you're away (/phone-alert)",
+  "types": "./types/index.d.ts"
+}

@@ -38,6 +38,9 @@ const guardOn = atom({ plugin: 'guardrails', key: 'isOn' } as const, true)
 const guardBlocks = atom({ plugin: 'guardrails', key: 'blocks' } as const, [])
 const budgetOn = atom({ plugin: 'budget-guard', key: 'isOn' } as const, true)
 const explainOn = atom({ plugin: 'explain-risky', key: 'isOn' } as const, true)
+const phoneOn = atom({ plugin: 'phone-alert', key: 'isOn' } as const, false)
+const phoneChannels = atom({ plugin: 'phone-alert', key: 'channels' } as const, [])
+const phoneSent = atom({ plugin: 'phone-alert', key: 'lastSent' } as const, null)
 const checkpoints = atom({ plugin: 'undo-last', key: 'checkpoints' } as const, [])
 const agents = atom({ plugin: 'agent-dashboard', key: 'agents' } as const, [])
 // Ticks every second while an agent runs, so elapsed times move.
@@ -254,9 +257,10 @@ type Seen = {
   agents: Record<string, string>
   switches: Record<string, boolean>
   budgetShare: number
+  phoneAt: number
 }
 
-const seen: Seen = { ready: false, blocks: 0, model: '', saved: 0, checkpoints: 0, agents: {}, switches: {}, budgetShare: 0 }
+const seen: Seen = { ready: false, blocks: 0, model: '', saved: 0, checkpoints: 0, agents: {}, switches: {}, budgetShare: 0, phoneAt: 0 }
 
 // Compares what the mods hold now with what they held last time, and writes what changed to the feed.
 async function scan($: EngineInterface) {
@@ -266,6 +270,7 @@ async function scan($: EngineInterface) {
   const points = (await read($, checkpoints)).length
   const agentList = await read($, agents)
   const switches = await switchStates($)
+  const sent = await read($, phoneSent)
   await update($, model, () => id)
 
   if (seen.ready) {
@@ -292,6 +297,9 @@ async function scan($: EngineInterface) {
         await log($, agent.state === 'done' ? '✅' : '❌', `Agent ${agent.state}: ${agent.description}`, agent.state === 'done' ? 'on' : 'off')
       }
     }
+    if (sent !== null && sent.at > seen.phoneAt) {
+      await log($, '📱', `Sent to phone (${sent.via.join('+')}): ${sent.text}`, 'info')
+    }
     for (const sid of Object.keys(switches) as SwitchId[]) {
       if (seen.switches[sid] !== undefined && seen.switches[sid] !== switches[sid]) {
         await log($, '🎛️', `${SWITCHES[sid].label} ${switches[sid] ? 'on' : 'off'}`, switches[sid] ? 'on' : 'off')
@@ -305,6 +313,7 @@ async function scan($: EngineInterface) {
   seen.checkpoints = points
   seen.agents = Object.fromEntries(agentList.map(agent => [agent.key, agent.state]))
   seen.switches = switches
+  seen.phoneAt = sent?.at ?? seen.phoneAt
 }
 
 // ---- other mods' stores, and the sessions on this machine ----------------------------
@@ -491,9 +500,28 @@ async function groupsOf($: EngineInterface, t: Theme): Promise<Group[]> {
         { key: 'meter', icon: '📊', name: 'Usage meter', tone: 'info', status: fiveHour ? `5h ${Math.round(fiveHour.percentUsed)}%` : 'watching' },
         { key: 'agents', icon: '🤖', name: 'Agent panel', tone: running > 0 ? 'warn' : 'info', status: running > 0 ? `${running} running` : 'idle', action: { label: 'open', command: 'agent-panel', hotkey: 'r' } },
         { key: 'sound', icon: '🔔', name: 'Done sound', tone: 'info', status: 'always on' },
+        await phoneRow($),
       ],
     },
   ]
+}
+
+// Phone alerts: set up first (the press shows how), then an on/off switch naming the channels.
+async function phoneRow($: EngineInterface): Promise<Row> {
+  const via = await read($, phoneChannels)
+  if (via.length === 0) {
+    return { key: 'phone', icon: '📱', name: 'Phone alert', tone: 'info', status: 'not set up', action: { label: 'set up', command: 'phone-alert', hotkey: 'i' } }
+  }
+  const on = await read($, phoneOn)
+
+  return {
+    key: 'phone',
+    icon: '📱',
+    name: 'Phone alert',
+    tone: on ? 'on' : 'off',
+    status: on ? `ON · ${via.join('+')}` : 'OFF',
+    action: { label: 'switch', command: 'phone-alert', args: on ? 'off' : 'on', hotkey: 'i' },
+  }
 }
 
 // A panel button's press: run the command, then remember the switches and look for changes.
